@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TextChooser</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">
+    </script>
+
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+        rel="stylesheet" type="text/css" />
+</head>
+
+<form action="/data" method="post">
+    <h1>Text Chooser</h1>
+		<label for="chosen">Start typing for recommended text.</label>
+		<input type="text" name="chosen" id="tags">
+
+    <script>
+  $( function() {
+    var availableText = [
+        {% for choose in choose %}
+            "{{choose}}",
+        {% endfor %}
+    ];
+    $( "#tags" ).autocomplete({
+      source: availableText
+    });
+  } );
+  </script>
+	<input type="submit" value="Submit">
+</form>
+
+</html>
